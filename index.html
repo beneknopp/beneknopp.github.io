@@ -129,7 +129,7 @@
 				document.getElementById("dateForm").addEventListener("submit", async function(event) {
 					event.preventDefault();
 					const date = document.getElementById("date").value;
-					const response = await fetch("http://bknopp.pythonanywhere.com/submit-date", {
+					const response = await fetch("https://bknopp.pythonanywhere.com/submit-date", {
 						method: "POST",
 						mode: "cors",
 						headers: {
