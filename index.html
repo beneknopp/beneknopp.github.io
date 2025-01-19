@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>你在我眼里很美丽</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #F3DCE7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .enter {
+            cursor: pointer; /* Indicates it's clickable */
+            z-index: 10; /* Ensures the image is on top of the page */
+        }
+		
+        /* Content hidden initially */
+        .hidden-content {		
+            visibility: hidden;
+		}
+        .hidden-content {
+            transition: opacity 0.5s ease;
+        }
+        .hidden-content.show {
+            visibility: visible;
+            opacity: 1;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            height: 90%;
+        }
+        .column {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 30%;
+        }
+        .left-column img,
+        .right-column img {
+            width: 500px;
+            height: 80px;
+            margin-bottom: 10px;
+        }
+        .center-column img {
+            width: 600px;
+            height: 100px;
+        }
+        .center-column .large {
+            height: 300px;
+            width: auto;
+            margin: 20px 0;
+        }
+        form {
+            background: #F194BB;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 20px;
+			background-color: #F3DCE7;
+			margin-right: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #F3DCE7;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+			visibility: visible;
+        }
+        button:hover {
+            background-color: #F194BB;
+        }		
+    </style>
+</head>
+<body>
+
+    <div class="container content">
+        <!-- Left Column -->
+        <div class="column left-column">
+			<img id="you-element" class="hidden-content enter" style="height: 200px;" src="yoou2.png" alt="Description of image">		
+            <img class="hidden-content" src="Causal relations are so hard to find.svg" alt="Left Image 1">
+            <img class="hidden-content" src="Causal relations are so hard to study.svg" alt="Left Image 2">
+            <img class="hidden-content" src="Mountains will crumble and fall to the sea.svg" alt="Left Image 3">
+            <img class="hidden-content" src="Since when I met you, one thing persists.svg" alt="Left Image 4">
+        </div>
+        <!-- Center Column -->
+        <div class="column center-column">
+			<img id="enter-element" class="enter svg-image" src="CDisuncertain.svg" alt="SVG Graphic">    
+            <img class="large hidden-content" src="https://media.giphy.com/media/RLG2ZFo3yBMHYXC36F/giphy.gif?cid=ecf05e47k3cemibwipj3xg0xdg4xy7spq662o74n3w2afey3&ep=v1_gifs_search&rid=giphy.gif&ct=g"  alt="Large Center GIF">
+            <img class="hidden-content" src="SeeinYouMakesMeSomehow.svg" alt="Center Image 3">			
+			<div class="hidden-content">
+				<h1 style="text-align: center"> Will you be my valentine's date? <br>
+				(Friday, 14th February) </h1></div>
+			<form style="display: flex; flex-direction: column;" id="dateForm" class="hidden-content">
+				<label for="date">To say yes, please enter your birthday:</label>
+				<input 
+					type="text" 
+					id="date" 
+					name="date" 
+					placeholder="DD/MM" 
+					pattern="\d{2}/\d{2}"
+					required 
+					title="Jiaxin's birthday">
+				<button class="hidden-content" style="color: #F194BB;" type="submit">Yes</button>
+			</form>
+			<script>
+				document.getElementById("dateForm").addEventListener("submit", async function(event) {
+					event.preventDefault();
+					const date = document.getElementById("date").value;
+					const response = await fetch("http://bknopp.pythonanywhere.com/submit-date", {
+						method: "POST",
+						mode: "cors",
+						headers: {
+							"Content-Type": "application/x-www-form-urlencoded"
+						},
+						body: `date=${encodeURIComponent(date)}`
+					});
+
+					if (response.ok) {
+						const result = await response.text();
+						
+						alert(result);
+					} else {
+						alert("There was an error submitting the form.");
+					}
+				});
+			</script>
+			
+			<img class="hidden-content" src="Three things I want. These three things will do.svg" alt="Right Image 5">
+        </div>
+        <!-- Right Column -->
+        <div class="column right-column">
+			<img id="me-element" class="hidden-content enter" style="height: 200px;" src="mee2.png" alt="Description of image">
+            <img class="hidden-content" src="Simulation is fiction, but this one is real.svg" alt="Right Image 1">
+            <img class="hidden-content" src="Bools can be false.svg" alt="Right Image 2">
+            <img class="hidden-content" src="My thoughts on you are, simply expressed.svg" alt="Right Image 3">
+            <img class="hidden-content" src="My thoughts on you are, simply put.svg" alt="Right Image 4">
+
+        </div>
+    </div>
+	
+    <script>
+        const enterElement = document.getElementById('enter-element');
+		const youElement = document.getElementById('you-element');
+		const meElement = document.getElementById('me-element');
+        const hiddenContentElements = document.querySelectorAll('.hidden-content');
+        enterElement.addEventListener('click', () => {
+            youElement.classList.add('show');
+        });
+        youElement.addEventListener('click', () => {
+            meElement.classList.add('show');
+        });		
+		meElement.addEventListener('click', () => {
+            hiddenContentElements.forEach((element) => {
+                element.classList.add('show');
+            });
+        });
+    </script>	
+	
+</body>
+</html>
+
