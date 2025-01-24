@@ -100,8 +100,8 @@
         <!-- Left Column -->
         <div class="column left-column">
 			<img id="you-element" class="hidden-content enter" style="height: 200px;" src="yoou2.png" alt="Description of image">		
-            <img class="hidden-content" src="Causal relations are so hard to find.svg" alt="Left Image 1">
-            <img class="hidden-content" src="Causal relations are so hard to study.svg" alt="Left Image 2">
+            <img class="hidden-content" src="Causal relations are so hard to find.svg" alt="Left Image 1" id="you-subscript">
+            <img class="hidden-content" src="Simulation is fiction, but this one is real.svg" alt="Left Image 2">
             <img class="hidden-content" src="Mountains will crumble and fall to the sea.svg" alt="Left Image 3">
             <img class="hidden-content" src="Since when I met you, one thing persists.svg" alt="Left Image 4">
         </div>
@@ -109,7 +109,7 @@
         <div class="column center-column">
 			<img id="enter-element" class="enter svg-image" src="CDisuncertain.svg" alt="SVG Graphic">    
             <img class="large hidden-content" src="https://media.giphy.com/media/RLG2ZFo3yBMHYXC36F/giphy.gif?cid=ecf05e47k3cemibwipj3xg0xdg4xy7spq662o74n3w2afey3&ep=v1_gifs_search&rid=giphy.gif&ct=g"  alt="Large Center GIF">
-            <img class="hidden-content" src="SeeinYouMakesMeSomehow.svg" alt="Center Image 3">			
+           			
 			<div class="hidden-content">
 				<h1 style="text-align: center"> Will you be my valentine's date? <br>
 				(Friday, 14th February) </h1></div>
@@ -147,13 +147,13 @@
 					}
 				});
 			</script>
-			
-			<img class="hidden-content" src="Three things I want. These three things will do.svg" alt="Right Image 5">
+			<img class="hidden-content" src="SeeinYouMakesMeSomehow.svg" alt="Center Image 3">
+			<!--<img class="hidden-content" src="Three things I want. These three things will do.svg" alt="Right Image 5">-->
         </div>
         <!-- Right Column -->
         <div class="column right-column">
 			<img id="me-element" class="hidden-content enter" style="height: 200px;" src="mee2.png" alt="Description of image">
-            <img class="hidden-content" src="Simulation is fiction, but this one is real.svg" alt="Right Image 1">
+            <img class="hidden-content" src="Causal relations are so hard to study.svg" alt="Right Image 1" id="me-subscript">
             <img class="hidden-content" src="Bools can be false.svg" alt="Right Image 2">
             <img class="hidden-content" src="My thoughts on you are, simply expressed.svg" alt="Right Image 3">
             <img class="hidden-content" src="My thoughts on you are, simply put.svg" alt="Right Image 4">
@@ -164,13 +164,17 @@
     <script>
         const enterElement = document.getElementById('enter-element');
 		const youElement = document.getElementById('you-element');
+		const youSubscript = document.getElementById('you-subscript');
 		const meElement = document.getElementById('me-element');
+		const meSubscript = document.getElementById('me-subscript');
         const hiddenContentElements = document.querySelectorAll('.hidden-content');
         enterElement.addEventListener('click', () => {
             youElement.classList.add('show');
+			youSubscript.classList.add('show');
         });
         youElement.addEventListener('click', () => {
             meElement.classList.add('show');
+			meSubscript.classList.add('show');
         });		
 		meElement.addEventListener('click', () => {
             hiddenContentElements.forEach((element) => {
