@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>你在我眼里很美丽</title>
+    <title>Zum Geburtstag</title>
     <style>
         body {
             margin: 0;
@@ -14,22 +14,7 @@
             align-items: center;
             height: 100vh;
         }
-        .enter {
-            cursor: pointer; /* Indicates it's clickable */
-            z-index: 10; /* Ensures the image is on top of the page */
-        }
-		
-        /* Content hidden initially */
-        .hidden-content {		
-            visibility: hidden;
-		}
-        .hidden-content {
-            transition: opacity 0.5s ease;
-        }
-        .hidden-content.show {
-            visibility: visible;
-            opacity: 1;
-        }
+
         .container {
             display: flex;
             justify-content: space-between;
@@ -97,45 +82,29 @@
 <body>
 
     <div class="container content">
-        <!-- Left Column -->
-        <div class="column left-column">
-			<img id="you-element" class="hidden-content enter" style="height: 200px;" src="yoou2.png" alt="Description of image">		
-            <img class="hidden-content" src="Causal relations are so hard to find.svg" alt="Left Image 1" id="you-subscript">
-            <img class="hidden-content" src="Simulation is fiction, but this one is real.svg" alt="Left Image 2">
-            <img class="hidden-content" src="Mountains will crumble and fall to the sea.svg" alt="Left Image 3">
-            <img class="hidden-content" src="Since when I met you, one thing persists.svg" alt="Left Image 4">
-        </div>
-        <!-- Center Column -->
         <div class="column center-column">
-			<img id="enter-element" class="enter svg-image" src="CDisuncertain.svg" alt="SVG Graphic">    
-            <img class="large hidden-content" src="https://media.giphy.com/media/RLG2ZFo3yBMHYXC36F/giphy.gif?cid=ecf05e47k3cemibwipj3xg0xdg4xy7spq662o74n3w2afey3&ep=v1_gifs_search&rid=giphy.gif&ct=g"  alt="Large Center GIF">
-           			
-			<div class="hidden-content">
-				<h1 style="text-align: center"> Will you be my valentine's date? <br>
-				(Friday, 14th February) </h1></div>
-			<form style="display: flex; flex-direction: column;" id="dateForm" class="hidden-content">
-				<label for="date">To say yes, please enter your birthday:</label>
+			<form style="display: flex; flex-direction: column;" id="visitorNameeForm">
+				<label for="date">Bitte gib deinen Vornamen ein:</label>
 				<input 
 					type="text" 
 					id="date" 
 					name="date" 
 					placeholder="DD/MM" 
 					pattern="\d{2}/\d{2}"
-					required 
-					title="Jiaxin's birthday">
-				<button class="hidden-content" style="color: #F194BB;" type="submit">Yes</button>
+					required >
+				<button class="hidden-content" style="color: #F194BB;" type="submit">OK</button>
 			</form>
 			<script>
 				document.getElementById("dateForm").addEventListener("submit", async function(event) {
 					event.preventDefault();
-					const date = document.getElementById("date").value;
-					const response = await fetch("https://bknopp.pythonanywhere.com/submit-date", {
+					const visitorname = document.getElementById("visitorname").value;
+					const response = await fetch("https://bknopp.pythonanywhere.com/submit-name", {
 						method: "POST",
 						mode: "cors",
 						headers: {
 							"Content-Type": "application/x-www-form-urlencoded"
 						},
-						body: `date=${encodeURIComponent(date)}`
+						body: `name=${encodeURIComponent(date)}`
 					});
 
 					if (response.ok) {
@@ -147,42 +116,8 @@
 					}
 				});
 			</script>
-			<img class="hidden-content" src="SeeinYouMakesMeSomehow.svg" alt="Center Image 3">
-			<!--<img class="hidden-content" src="Three things I want. These three things will do.svg" alt="Right Image 5">-->
-        </div>
-        <!-- Right Column -->
-        <div class="column right-column">
-			<img id="me-element" class="hidden-content enter" style="height: 200px;" src="mee2.png" alt="Description of image">
-            <img class="hidden-content" src="Causal relations are so hard to study.svg" alt="Right Image 1" id="me-subscript">
-            <img class="hidden-content" src="Bools can be false.svg" alt="Right Image 2">
-            <img class="hidden-content" src="My thoughts on you are, simply expressed.svg" alt="Right Image 3">
-            <img class="hidden-content" src="My thoughts on you are, simply put.svg" alt="Right Image 4">
-
         </div>
     </div>
-	
-    <script>
-        const enterElement = document.getElementById('enter-element');
-		const youElement = document.getElementById('you-element');
-		const youSubscript = document.getElementById('you-subscript');
-		const meElement = document.getElementById('me-element');
-		const meSubscript = document.getElementById('me-subscript');
-        const hiddenContentElements = document.querySelectorAll('.hidden-content');
-        enterElement.addEventListener('click', () => {
-            youElement.classList.add('show');
-			youSubscript.classList.add('show');
-        });
-        youElement.addEventListener('click', () => {
-            meElement.classList.add('show');
-			meSubscript.classList.add('show');
-        });		
-		meElement.addEventListener('click', () => {
-            hiddenContentElements.forEach((element) => {
-                element.classList.add('show');
-            });
-        });
-    </script>	
-	
 </body>
 </html>
 
