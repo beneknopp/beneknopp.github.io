@@ -102,7 +102,7 @@
 						headers: {
 							"Content-Type": "application/x-www-form-urlencoded"
 						},
-						body: `name=${encodeURIComponent(date)}`
+						body: `name=${encodeURIComponent(visitorname)}`
 					});
 					if (response.ok) {
 						const result = await response.text();
